@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "118071551266",
+    "project_id": "kursovaya-bread",
+    "storage_bucket": "kursovaya-bread.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118071551266:android:ed15b76bbe55d2b660b17b",
+        "android_client_info": {
+          "package_name": "it.mirea.kursovayabread"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118071551266-e849lb6je65ob710ms5tst0aabt2devc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.mirea.kursovayabread",
+            "certificate_hash": "6531e836438e80f2f6f930c1cc87d670b9c4a109"
+          }
+        },
+        {
+          "client_id": "118071551266-d91qi89ln090qinj7vrfuqf46c4ssoe5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw0J74Ktfofs2764sgrsRDIpyYupAZFgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118071551266-d91qi89ln090qinj7vrfuqf46c4ssoe5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="10dp"
+    app:cardBackgroundColor="@color/text_b">
+
+    <ImageView
+        android:src="@drawable/window"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Добро пожаловать!"
+        android:fontFamily="@font/raleway_dots"
+        android:textAlignment="center"
+        android:textColor="@color/text_w"
+        android:textSize="35sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:fontFamily="@font/raleway_dots"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вход"
+            android:textAlignment="center"
+            android:textColor="@color/text_b"
+            android:textSize="35sp"
+            android:layout_marginBottom="40dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_field"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textColor="@color/text_b"
+            android:textColorHint="@color/text_b"
+            android:textSize="20sp"
+            android:layout_marginBottom="35dp">
+        </EditText>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pass_field"
+            android:hint="Пароль"
+            android:inputType="textPassword"
+            android:text=""
+            android:textColor="@color/text_b"
+            android:textColorHint="@color/text_b"
+            android:textSize="20sp"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:passwordToggleEnabled="true"
+            android:layout_marginBottom="35dp">
+        </EditText>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

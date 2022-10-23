@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Личный кабинет" />
+    <item
+        android:id="@+id/production"
+        android:title="Продукция" />
+    <item
+        android:id="@+id/codes"
+        android:title="Ввести код" />
+    <item
+        android:id="@+id/exit"
+        android:title="Выйти" />
+    <group>
+        <item
+            android:id="@+id/director"
+            android:title="Директор">
+            <menu>
+                <item
+                android:id="@+id/addProduction"
+                android:title="Добавить продукт" />
+                <item
+                    android:id="@+id/managment"
+                    android:title="Учёт" />
+            </menu>
+        </item>
+    </group>
+    <group>
+        <item
+            android:id="@+id/admin"
+            android:title="Разработчик">
+            <menu>
+                <item
+                    android:id="@+id/admin_mode"
+                    android:title="Режим разработчика" />
+            </menu>
+        </item>
+    </group>
+</menu>
