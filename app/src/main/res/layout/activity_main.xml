@@ -8,42 +8,37 @@
     android:background="@drawable/background"
     android:fontFamily="@font/raleway_dots"
     tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
         <TextView
+            android:layout_above="@+id/buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
             android:text="Добро пожаловать!"
+            android:gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/text_w"
-            android:textSize="35sp" />
-    </LinearLayout>
+            android:textStyle="bold"
+            android:textColor="#063C71"
+            android:textSize="35sp"
+            android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/text_bottom"
+        android:layout_below="@+id/buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
         android:text="Войдите в свою учётную запись"
         android:textAlignment="center"
-        android:textColor="@color/text_w"
+        android:textColor="#063C71"
         android:textSize="15sp" />
 
     <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_bottom"
-        android:layout_margin="15dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="2">
@@ -55,8 +50,8 @@
             android:layout_marginBottom="25dp"
             android:background="@drawable/btn_register"
             android:text="Зарегистрироваться"
-            android:textColor="@color/text_b"
-            app:backgroundTint="#FFEB8D1E" />
+            android:textColor="@color/text_w"
+            app:backgroundTint="#063C71" />
 
         <Button
             android:id="@+id/btnSignIn"
@@ -65,7 +60,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/btn_sign_in"
             android:text="Войти"
-            android:textColor="@color/text_b"
-            app:backgroundTint="#FFEAD2AF" />
+            android:textColor="#063C71"
+            app:backgroundTint="#C1C3CA" />
     </LinearLayout>
 </RelativeLayout>

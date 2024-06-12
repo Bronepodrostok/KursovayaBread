@@ -2,19 +2,18 @@ package it.mirea.kursovayabread.models;
 
 public class User {
     private String name, email, pass, phone;
-    private boolean user = true, director = false, admin = false;
+    private UserRole role;
 
     public User() {
-        user = true;
-        director = false;
-        admin = false;
+        role = UserRole.USER;
     }
 
-    public User(String name, String email, String pass, String phone) {
+    public User(String name, String email, String pass, String phone, UserRole role) {
         this.name = name;
         this.email = email;
         this.pass = pass;
         this.phone = phone;
+        this.role = role;
     }
 
     public String getName() {
@@ -49,33 +48,10 @@ public class User {
         this.phone = phone;
     }
 
-    public boolean isUser() {
-        return user;
+    public UserRole getRole() {
+        return role;
     }
-
-    public void setUser() {
-        user = true;
-        director = false;
-        admin = false;
-    }
-
-    public boolean isDirector() {
-        return director;
-    }
-
-    public void setDirector() {
-        director = true;
-        user = false;
-        admin = false;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin() {
-        admin = true;
-        director = false;
-        user = false;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }

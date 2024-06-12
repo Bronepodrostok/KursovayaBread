@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="Вход"
             android:textAlignment="center"
-            android:textColor="@color/text_b"
+            android:textColor="#063C71"
             android:textSize="35sp"
             android:layout_marginBottom="40dp"/>
 
@@ -48,8 +48,8 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
             android:textSize="20sp"
             android:layout_marginBottom="35dp">
         </EditText>
@@ -60,8 +60,8 @@
             android:hint="Пароль"
             android:inputType="textPassword"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
             android:textSize="20sp"
             app:counterEnabled="true"
             app:counterMaxLength="10"

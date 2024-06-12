@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/home"
+android:id="@+id/production_activity"
+tools:context=".HomeActivity">
+
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:layout_marginBottom="320dp"
+    android:elevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:elevation="10dp"
+        android:id="@+id/navigation_view"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        app:itemTextColor="@color/text_w"
+        android:background="@drawable/btn_navigation"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+<TextView
+    android:id="@+id/production"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:fontFamily="@font/raleway_dots"
+    android:text="@string/math_model"
+    android:textAlignment="center"
+    android:textColor="@color/text_w"
+    android:textSize="35sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/production"
+        android:fontFamily="@font/raleway_dots"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+    <TextView
+        android:id="@+id/oeeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overall Equipment Effectiveness (OEE):"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textColor="#063C71"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/materialsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Required Materials:"
+        android:textStyle="bold"
+        android:textColor="#063C71"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/demandTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forecasted Demand:"
+        android:textStyle="bold"
+        android:textColor="#063C71"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/optimizationAdviceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Optimization Advice:"
+        android:textStyle="bold"
+        android:textColor="#063C71"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp" />
+    </LinearLayout>
+</RelativeLayout>

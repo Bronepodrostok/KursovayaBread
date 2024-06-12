@@ -14,26 +14,37 @@
         android:title="Выйти" />
     <group>
         <item
-            android:id="@+id/director"
-            android:title="Директор">
+            android:id="@+id/engineer"
+            android:title="Инженер-технолог">
             <menu>
                 <item
                 android:id="@+id/addProduction"
                 android:title="Добавить продукт" />
+            </menu>
+        </item>
+    </group>
+    <group>
+        <item
+            android:id="@+id/manager"
+            android:title="@string/production_manager">
+            <menu>
                 <item
                     android:id="@+id/managment"
                     android:title="Учёт" />
+                <item
+                    android:id="@+id/math"
+                    android:title="Мат. модели" />
             </menu>
         </item>
     </group>
     <group>
         <item
             android:id="@+id/admin"
-            android:title="Разработчик">
+            android:title="Администратор">
             <menu>
                 <item
                     android:id="@+id/admin_mode"
-                    android:title="Режим разработчика" />
+                    android:title="Панель администратора" />
             </menu>
         </item>
     </group>

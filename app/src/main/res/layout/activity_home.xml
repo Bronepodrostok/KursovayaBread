@@ -21,6 +21,11 @@
             android:layout_height="match_parent">
 
             <include layout="@layout/navigation_bar"/>
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/navigation_bar" />
         </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
@@ -42,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
         android:text=""
-        android:fontFamily="@font/raleway_dots"
         android:textAlignment="center"
         android:textColor="@color/text_w"
         android:textStyle="bold"
@@ -55,7 +59,8 @@
         android:orientation="vertical"
         android:fontFamily="@font/raleway_dots"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:id="@+id/layout1">
 
         <TextView
             android:layout_width="match_parent"
@@ -63,47 +68,71 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="155dp"
             android:id="@+id/home_id"
+            android:textStyle="bold"
             android:ems="10"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
-            android:textSize="14sp">
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
+            android:textSize="18sp">
         </TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/home_phone"
             android:ems="10"
+            android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:layout_marginTop="31dp"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
-            android:textSize="14sp">
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
+            android:textSize="18sp">
         </TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/home_email"
             android:ems="10"
+            android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:layout_marginTop="31dp"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
-            android:textSize="14sp">
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
+            android:textSize="18sp">
         </TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/home_role"
+            android:textStyle="bold"
             android:ems="10"
             android:layout_marginStart="15dp"
             android:layout_marginTop="31dp"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
-            android:textSize="14sp">
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
+            android:textSize="18sp">
         </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/task_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:layout_below="@id/layout1"
+        android:paddingTop="100dp">
+
+        <TextView
+            android:id="@+id/task_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ближайшие задачи"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:textColor="#063C71" />
+
     </LinearLayout>
 </RelativeLayout>

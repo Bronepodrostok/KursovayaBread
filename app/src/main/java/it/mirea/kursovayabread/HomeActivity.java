@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,8 +32,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.mirea.kursovayabread.fragments.AdminFragment;
+import it.mirea.kursovayabread.fragments.BaseFragment;
+import it.mirea.kursovayabread.fragments.HomeFragment;
+import it.mirea.kursovayabread.fragments.ManagmentFragment;
+import it.mirea.kursovayabread.fragments.MathFragment;
+import it.mirea.kursovayabread.fragments.ProductionFragment;
 import it.mirea.kursovayabread.models.Product;
 import it.mirea.kursovayabread.models.User;
+import it.mirea.kursovayabread.models.UserRole;
 
 public class HomeActivity extends AppCompatActivity {
     FirebaseAuth auth;//авторизация
@@ -54,7 +65,11 @@ public class HomeActivity extends AppCompatActivity {
         menu = navigationView.getMenu();
         toolbar = findViewById(R.id.navigation_bar);
         root = findViewById(R.id.home_activity);
+
+        setActionBar();
         getUserInfo();
+        LinearLayout taskListLayout = findViewById(R.id.task_list_layout);
+        addTaskToLayout(taskListLayout, "1. Микросхема", "до 15.06.2024");
     }
 
     private void setActionBar() {
@@ -65,33 +80,40 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_home);
 
         navigationView.setNavigationItemSelectedListener(item -> {
+            BaseFragment fragment = null;
             switch (item.getItemId()) {
                 case R.id.home:
-                    finish();
-                    startActivity(new Intent(this, HomeActivity.class));
-                    return true;
+                    fragment = new HomeFragment();
+                    actionBar.setTitle("Домашняя страница");
+                    getUserInfo();
+                    break;
                 case R.id.production: {
-                    finish();
-                    startActivity(new Intent(this, ProductionActivity.class));
-                    return true;
+                    fragment = new ProductionFragment();
+                    actionBar.setTitle("Список продукции");
+                    break;
                 }
                 case R.id.addProduction: {
                     showAddProductWindow();
-                    return true;
+                    break;
                 }
                 case R.id.managment: {
-                    finish();
-                    startActivity(new Intent(this, ManagmentActivity.class));
-                    return true;
+                    fragment = new ManagmentFragment();
+                    actionBar.setTitle("Учёт продукции");
+                    break;
+                }
+                case R.id.math: {
+                    fragment = new MathFragment();
+                    actionBar.setTitle("Математическая модель");
+                    break;
                 }
                 case R.id.admin_mode: {
-                    finish();
-                    startActivity(new Intent(this, AdminActivity.class));
-                    return true;
+                    fragment = new AdminFragment();
+                    actionBar.setTitle("Панель администратора");
+                    break;
                 }
                 case R.id.codes: {
                     showCodesWindow();
-                    return true;
+                    break;
                 }
                 case R.id.exit: {
                     finish();
@@ -99,6 +121,14 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
             }
+            if (fragment != null) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+
+            drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
     }
@@ -117,23 +147,34 @@ public class HomeActivity extends AppCompatActivity {
                 final TextView role = root.findViewById(R.id.home_role);
 
                 user = snapshot.child(auth.getCurrentUser().getUid()).getValue(User.class);
-                id.setText(auth.getCurrentUser().getUid());
-                email.setText(user.getEmail());
-                name.setText(user.getName());
-                phone.setText(user.getPhone());
-                if (user.isUser()) {
-                    role.setText("Работник");
-                    menu.findItem(R.id.director).setVisible(false);
-                    menu.findItem(R.id.admin).setVisible(false);
-                } else if (user.isDirector()) {
-                    role.setText("Директор");
-                    menu.findItem(R.id.director).setVisible(true);
-                    menu.findItem(R.id.admin).setVisible(false);
+                id.setText("id: " + auth.getCurrentUser().getUid());
+                email.setText("Почта: " + user.getEmail());
+                name.setText("Имя: " + user.getName());
+                phone.setText("Телефон: " + user.getPhone());
+                UserRole userRole = user.getRole();
+                String roleText;
+                boolean engineerVisible = false;
+                boolean managerVisible = false;
+                boolean adminVisible = false;
+
+                if (userRole.equals(UserRole.USER)) {
+                    roleText = "Должность: работник";
+                } else if (userRole.equals(UserRole.ENGINEER)) {
+                    roleText = "Должность: инженер";
+                    engineerVisible = true;
+                } else if (userRole.equals(UserRole.MANAGER)) {
+                    roleText = "Должность: менеджер";
+                    managerVisible = true;
                 } else {
-                    role.setText("Администратор");
-                    menu.findItem(R.id.director).setVisible(true);
-                    menu.findItem(R.id.admin).setVisible(true);
+                    roleText = "Должность: администратор";
+                    engineerVisible = true;
+                    managerVisible = true;
+                    adminVisible = true;
                 }
+                role.setText(roleText);
+                menu.findItem(R.id.engineer).setVisible(engineerVisible);
+                menu.findItem(R.id.manager).setVisible(managerVisible);
+                menu.findItem(R.id.admin).setVisible(adminVisible);
             }
 
             @Override
@@ -142,6 +183,37 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void addTaskToLayout(LinearLayout layout, String taskName, String dueDate) {
+        LinearLayout taskLayout = new LinearLayout(this);
+        taskLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView taskNameView = new TextView(this);
+        taskNameView.setText(taskName);
+        taskNameView.setTextSize(18);
+        taskNameView.setTextColor(getResources().getColor(R.color.text_color));
+        LinearLayout.LayoutParams taskNameParams = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+        taskLayout.addView(taskNameView, taskNameParams);
+
+        TextView dueDateView = new TextView(this);
+        dueDateView.setText(dueDate);
+        dueDateView.setTextSize(18);
+        dueDateView.setTextColor(getResources().getColor(R.color.text_color));
+        taskLayout.addView(dueDateView);
+
+        CheckBox checkBox = new CheckBox(this);
+        checkBox.setOnClickListener(v -> new AlertDialog.Builder(this)
+                .setTitle("Подтверждение")
+                .setMessage("Вы уверены, что хотите отметить эту задачу как выполненную?")
+                .setPositiveButton("Да", (dialog, which) -> {
+                    Toast.makeText(HomeActivity.this, "Задача выполнена", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Нет", (dialog, which) -> checkBox.setChecked(false))
+                .show());
+        taskLayout.addView(checkBox);
+
+        layout.addView(taskLayout);
+    }
 
     private void showCodesWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
@@ -164,10 +236,13 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.child(id.getText().toString()).getValue() != null) {
-                        if (user.isUser()) {
-                            user.setDirector();
+                        UserRole userRole = user.getRole();
+                        if (userRole.equals(UserRole.USER)) {
+                            user.setRole(UserRole.ENGINEER);
+                        } else if (userRole.equals(UserRole.ENGINEER)){
+                            user.setRole(UserRole.MANAGER);
                         } else {
-                            user.setAdmin();
+                            user.setRole(UserRole.ADMIN);
                         }
                         users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .setValue(user)
@@ -215,12 +290,6 @@ public class HomeActivity extends AppCompatActivity {
                 return;
             }
             product = new Product(id.getText().toString(), name.getText().toString(), price.getText().toString());
-//            products.child(product.getId())
-//                    .setValue(product)
-//                    .addOnSuccessListener(unused -> {
-//                                Snackbar.make(root, "Продукт добавлен!", Snackbar.LENGTH_SHORT).show();
-//                            }
-//                    );
             products.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

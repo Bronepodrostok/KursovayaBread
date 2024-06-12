@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Регистрация"
             android:textAlignment="center"
-            android:textColor="@color/text_b"
+            android:textColor="#063C71"
             android:textSize="35sp"/>
 
 
@@ -49,8 +49,8 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
             android:textSize="20sp">
         </EditText>
         <EditText
@@ -61,8 +61,8 @@
             android:hint="Пароль"
             android:inputType="textPassword"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
             android:textSize="20sp"
 
             app:counterEnabled="true"
@@ -77,8 +77,8 @@
             android:hint="Имя"
             android:inputType="text"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
             android:textSize="20sp">
         </EditText>
         <EditText
@@ -89,8 +89,8 @@
             android:hint="Телефон"
             android:inputType="phone"
             android:text=""
-            android:textColor="@color/text_b"
-            android:textColorHint="@color/text_b"
+            android:textColor="#063C71"
+            android:textColorHint="#063C71"
             android:textSize="20sp">
         </EditText>
     </LinearLayout>
